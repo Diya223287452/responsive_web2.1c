@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo App</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz@10..48&family=Qwitcher+Grypen:wght@700&family=Tulpen+One&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/vue@3.2.20/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <div class="todo-app">
+        <h1>Todo List</h1>
+        <div class="add-task">
+          <input
+            v-model="newTask"
+            @keyup.enter="addTask"
+            placeholder="Add a new task"
+          />
+          <button @click="addTask">Add Task</button>
+        </div>
+        <ul class="task-list">
+          <li v-for="(task, index) in tasks" :key="index">
+            <label>
+              <input type="checkbox" v-model="task.completed" />
+              <span class="task-text" :class="{ completed: task.completed }"
+                >{{ task.text }}</span
+              >
+            </label>
+            <button class="delete-button" @click="removeTask(index)">
+              Delete
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
